@@ -26,8 +26,8 @@ app.post('/deploy', (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     const repoUrl = req.body.repoUrl;
     console.log(`Deploying ${repoUrl}`);
     const id = (0, utils_1.idgen)();
-    yield (0, simple_git_1.default)().clone(repoUrl, path_1.default.join(__dirname, `./ouput/${id}`));
-    const files = (0, file_1.readFile)(path_1.default.join(__dirname, `./ouput/${id}`));
+    yield (0, simple_git_1.default)().clone(repoUrl, path_1.default.join(__dirname, `./output/${id}`));
+    const files = (0, file_1.readFile)(path_1.default.join(__dirname, `output/${id}`));
     files.forEach((file) => __awaiter(void 0, void 0, void 0, function* () {
         yield (0, cloud_1.uploadFile)(file.slice(__dirname.length + 1), file);
     }));
@@ -35,7 +35,8 @@ app.post('/deploy', (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         status: "success",
         id: id
     });
+    //home/agnibha/Vercel-Dev-Clone/Vercel-mod/output/ts/app.tsx
 }));
-app.listen(3000, () => {
+app.listen(3001, () => {
     console.log('Server listening on port 3000');
 });
